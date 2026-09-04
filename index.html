@@ -1235,8 +1235,9 @@
     @media (max-width:380px) { .products-grid { grid-template-columns:1fr; } .collection-grid { grid-template-columns:1fr; } .hero h1 { font-size:2.7rem; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
 
-    /* Fragrance Hero demo adaptation. The connected preview uses the bundled React shader;
-       this static catalog keeps the same branded composition as its graceful fallback. */
+    /* Fragrance Hero integration. The connected catalog route mounts the bundled React shader
+       first and reuses this document for the archive; this standalone page keeps the same
+       branded composition as its graceful fallback. */
     .primary-nav { display:flex; align-items:center; justify-content:center; gap:clamp(1rem,2.7vw,2.6rem); margin-left:auto; }
     .primary-nav a { min-height:44px; display:inline-flex; align-items:center; color:var(--text-main); text-decoration:none; text-transform:uppercase; letter-spacing:.14em; font-size:.65rem; opacity:.74; transition:color .18s ease, opacity .18s ease; }
     .primary-nav a:hover, .primary-nav a:focus-visible { color:var(--accent-gold); opacity:1; }
