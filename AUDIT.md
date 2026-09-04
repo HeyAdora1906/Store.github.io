@@ -12,3 +12,9 @@ Reviewed the `index.html` shipped on the default branch before making changes.
 - **Forms/WhatsApp:** there is no contact form, WhatsApp number, WhatsApp URL, or product-specific order action. Existing product data contains Amazon links, prices, ratings, and image URLs, but no explicit availability field.
 
 The repair keeps the existing catalog, guide, region/language sections, palette, and typography direction while making the initial render usable, improving metadata and responsive/accessibility behavior, and adding a WhatsApp share/order CTA that can be pointed at the verified business number when the owner supplies it. No WhatsApp number exists anywhere in the repository or history, so no number was invented.
+
+## Redesign implementation (September 4, 2026)
+- Added the editorial hero, featured collection pathways, dark product-image treatment, refined cards, and a product detail dialog while retaining the existing catalog data, guides, filters, regional selector, and language controls.
+- Kept the approved black/crimson/gold/cream direction and made the intended values explicit in the redesign override: near-black `#0B0B0C`, crimson `#B5342E`, gold/cream `#D4B98C`, and off-white `#F2EFEA`.
+- WhatsApp remains intentionally preview-only. `WHATSAPP_NUMBER` is the single configuration point; empty configuration renders disabled buttons and a disabled floating CTA rather than an invalid recipient link.
+- No testimonials, scent notes, stock claims, business facts, or other product fields were invented. Detail content renders only existing product fields when present.
