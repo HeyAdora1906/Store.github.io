@@ -1234,6 +1234,27 @@
     @media (max-width:640px) { .hero-content { padding-top:4rem; padding-bottom:4.5rem; } .hero::before { width:74vw; right:-24vw; } .collection-grid { grid-template-columns:1fr 1fr; padding-bottom:3.5rem; } .collection-card { min-height:150px; padding:1rem; } .sort-wrapper { align-items:stretch; flex-direction:column; gap:1rem; } .elegant-select { min-width:0; width:100%; } .products-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .product-info { padding:0 .75rem; } .product-title { font-size:1rem; } .product-actions { grid-template-columns:1fr; } .detail-btn { grid-column:auto; } .product-image-wrap { padding:.7rem; margin-bottom:.8rem; } .whatsapp-float { font-size:.58rem; padding:.7rem .8rem; } }
     @media (max-width:380px) { .products-grid { grid-template-columns:1fr; } .collection-grid { grid-template-columns:1fr; } .hero h1 { font-size:2.7rem; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; } }
+
+    /* Fragrance Hero demo adaptation. The connected preview uses the bundled React shader;
+       this static catalog keeps the same branded composition as its graceful fallback. */
+    .primary-nav { display:flex; align-items:center; justify-content:center; gap:clamp(1rem,2.7vw,2.6rem); margin-left:auto; }
+    .primary-nav a { min-height:44px; display:inline-flex; align-items:center; color:var(--text-main); text-decoration:none; text-transform:uppercase; letter-spacing:.14em; font-size:.65rem; opacity:.74; transition:color .18s ease, opacity .18s ease; }
+    .primary-nav a:hover, .primary-nav a:focus-visible { color:var(--accent-gold); opacity:1; }
+    .hero { min-height:calc(100svh - 78px); background:linear-gradient(90deg,rgba(11,11,12,.98) 0%,rgba(11,11,12,.76) 42%,rgba(11,11,12,.12) 100%), radial-gradient(ellipse 36% 68% at 78% 60%,rgba(233,30,99,.62),transparent 60%), radial-gradient(ellipse 34% 56% at 66% 45%,rgba(255,107,53,.36),transparent 62%),#0B0B0C; }
+    .hero-fallback { position:absolute; inset:0; z-index:-2; background:linear-gradient(112deg,#0B0B0C 0%,#111112 56%,#180e12 100%); opacity:.35; }
+    .hero::before { inset:0; width:auto; border:0; transform:none; background:radial-gradient(ellipse 25% 68% at 74% 58%,rgba(255,0,123,.22),transparent 68%); }
+    .hero::after { opacity:.08; }
+    .hero-content { min-height:calc(100svh - 78px); display:flex; flex-direction:column; justify-content:center; padding:clamp(4.5rem,13vh,9rem) clamp(1.5rem,7vw,7rem) clamp(5rem,12vh,8rem); }
+    .hero-content::before { content:none; }
+    .hero-tag { max-width:460px; margin:0 0 1.6rem; padding:.85rem 0 0; border-top:1px solid rgba(212,185,140,.62); color:var(--accent-gold); letter-spacing:.25em; }
+    .hero h1 { max-width:760px; margin:0; font-size:clamp(2.75rem,5.5vw,4.5rem); line-height:.98; letter-spacing:-.055em; }
+    .hero h1 em { color:var(--accent-gold); font-style:italic; }
+    .hero p { max-width:450px; margin:1.7rem 0 0; color:var(--text-main); font-size:clamp(1rem,1.45vw,1.15rem); line-height:1.65; }
+    .hero-actions { margin-top:2rem; }
+    .hero-cta, .hero-secondary { min-height:48px; gap:.7rem; padding:.8rem 1.1rem; }
+    .hero-meta { margin-top:2.6rem !important; color:var(--accent-gold) !important; font-size:.69rem !important; letter-spacing:.25em; text-transform:uppercase; opacity:.78; }
+    @media (max-width:767px) { .primary-nav { display:none; } .header-inner { min-height:70px; } .hero, .hero-content { min-height:calc(100svh - 70px); } .hero-content { padding:4.5rem 1.25rem 4rem; } .hero::after { background:linear-gradient(180deg,rgba(11,11,12,.8),rgba(11,11,12,.18)); } }
+    @media (prefers-reduced-motion:reduce) { .hero-cta, .hero-secondary { transition:none; } }
   </style>
 </head>
 <body>
@@ -1301,6 +1322,11 @@
         </div>
       </div>
       
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#controlsContainer">The archive</a>
+        <a href="#fragranceGuide">Fragrance guide</a>
+        <a href="#collectionTitle">Our edit</a>
+      </nav>
       <div class="header-controls">
         <div id="langFlags" class="lang-flags" style="display:none;"></div>
       </div>
@@ -1313,16 +1339,18 @@
     <p id="bhDetails">Est. YYYY — Origin</p>
   </div>
 
-  <!-- HERO SECTION (Solid Black Background) -->
-  <section class="hero" id="heroSection">
+  <!-- HERO SECTION: EL PERFUMIST FRAGRANCE HERO -->
+  <section class="hero" id="heroSection" aria-labelledby="heroTitle">
+    <div class="hero-fallback" aria-hidden="true"></div>
     <div class="hero-content">
-      <span class="hero-tag">Collection Privée</span>
-      <h1 data-i18n="hero_title">Fragrance as a Second Skin.</h1>
-      <p data-i18n="hero_sub">A considered archive of oud, attar, and signature houses for the discerning wearer.</p>
+      <span class="hero-tag">El Perfumist / The fragrance archive</span>
+      <h1 id="heroTitle">A signature in <em>scent.</em></h1>
+      <p>A considered catalog of Arabian and oriental fragrances, shaped for the way you want to be remembered.</p>
       <div class="hero-actions">
-        <a class="hero-cta" href="#controlsContainer">Enter the archive</a>
-        <a class="hero-secondary" href="#fragranceGuide">Find your occasion</a>
+        <a class="hero-cta" href="#controlsContainer">Enter the archive <span aria-hidden="true">↗</span></a>
+        <a class="hero-secondary" href="#fragranceGuide">Find your notes <span aria-hidden="true">↓</span></a>
       </div>
+      <p class="hero-meta">Oud · attar · signature houses</p>
     </div>
   </section>
 
@@ -1475,11 +1503,6 @@
     <button class="dialog-close" type="button" onclick="closeProductDetail()" aria-label="Close product details">×</button>
     <div class="dialog-inner" id="productDialogContent"></div>
   </dialog>
-  <button class="whatsapp-float is-disabled" id="whatsappFloat" type="button" disabled aria-disabled="true" title="WhatsApp will be enabled when the verified business number is configured">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.2 1.7 6L0 24l6.3-1.9a11.7 11.7 0 0 0 5.8 1.5h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.3-6.1-3.5-8.3ZM12.2 21.5h-.1c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.7 1.1 1.1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.2C2.3 6.4 6.7 2 12.2 2c2.6 0 5 1 6.8 2.8a9.6 9.6 0 0 1 2.8 6.9c0 5.4-4.3 9.8-9.6 9.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2 0-.4-.1-.6-.1-.2-.7-1.8-.9-2.5-.2-.7-.5-.6-.7-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.1-.3-.2-.6-.3Z"/></svg>
-    <span>WhatsApp preview · number pending</span>
-  </button>
-
   <!-- FOOTER -->
   <footer class="footer" id="footer">
     <div class="footer-inner">
