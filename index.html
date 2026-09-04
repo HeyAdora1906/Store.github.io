@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyStore Elite - Luxury Fragrances</title>
+  <title>El Perfumist | Luxury Arabian Fragrances</title>
+  <meta name="description" content="Explore El Perfumist's curated collection of luxury Arabian and oriental fragrances, with product pricing and direct ordering options.">
+  <meta name="theme-color" content="#131313">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="El Perfumist | Luxury Arabian Fragrances">
+  <meta property="og:description" content="A curated archive of rare essences and signature fragrances.">
+  <meta property="og:site_name" content="El Perfumist">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23131313'/%3E%3Cpath d='M32 10 52 22v20L32 54 12 42V22z' fill='none' stroke='%23C19A6B' stroke-width='4'/%3E%3Cpath d='M32 10v44M12 22l20 12 20-12' fill='none' stroke='%23C19A6B' stroke-width='3'/%3E%3C/svg%3E">
   <!-- Google Fonts: Inter para texto, Noto Serif para encabezados elegantes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <style>
@@ -1110,23 +1118,33 @@
       .guide-tabs { gap: 0.5rem; padding: 0 1rem; }
       .guide-tab-btn { padding: 0.6rem 1rem; font-size: 0.65rem; }
     }
+
+    .product-actions { display: grid; gap: 0.65rem; margin-top: auto; }
+    .whatsapp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; background: #1f8f54; border: 1px solid #54c98a; color: #fff; font-weight: 600; padding: 0.85rem 1rem; text-decoration: none; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.4px; transition: background 0.3s ease, transform 0.3s ease; }
+    .whatsapp-btn:hover, .whatsapp-btn:focus-visible { background: #2abf70; color: #071b10; transform: translateY(-2px); }
+    .availability { font-size: 0.72rem; color: var(--accent-gold); letter-spacing: 0.7px; margin-bottom: 0.9rem; }
+    :focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 3px; }
+    button, a, select, input { -webkit-tap-highlight-color: transparent; }
+    .sidebar { overscroll-behavior: contain; }
+    @media (max-width: 480px) { .header-inner { padding: 0 1rem; } .logo { font-size: 1.35rem; } .header-left { gap: 0.75rem; } .product-actions { gap: 0.45rem; } .amazon-btn, .whatsapp-btn { padding-left: 0.35rem; padding-right: 0.35rem; font-size: 0.58rem; letter-spacing: 0.65px; } .carousel-btn { width: 38px; height: 38px; } .carousel-btn.prev { left: 0; } .carousel-btn.next { right: 0; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
   </style>
 </head>
 <body>
 
   <!-- SPLASH SCREEN: REGION SELECTOR -->
-  <div class="splash-screen" id="splashScreen">
+  <div class="splash-screen" id="splashScreen" role="dialog" aria-modal="true" aria-labelledby="splashTitle">
     <div class="splash-content">
-      <h2 class="splash-title" data-i18n="splash_title">Welcome to MyStore Elite</h2>
+      <h2 class="splash-title" id="splashTitle" data-i18n="splash_title">Welcome to El Perfumist</h2>
       <p class="splash-subtitle" data-i18n="splash_subtitle">Please select your shipping destination</p>
       
       <div class="region-grid">
-        <button class="region-btn" onclick="enterStore('US')">United States</button>
-        <button class="region-btn" onclick="enterStore('CA')">Canada</button>
-        <button class="region-btn" onclick="enterStore('UK')">United Kingdom</button>
-        <button class="region-btn" onclick="enterStore('ES')">Spain</button>
-        <button class="region-btn" onclick="enterStore('IT')">Italy</button>
-        <button class="region-btn" onclick="enterStore('FR')">France</button>
+        <button type="button" class="region-btn" onclick="enterStore('US')">United States</button>
+        <button type="button" class="region-btn" onclick="enterStore('CA')">Canada</button>
+        <button type="button" class="region-btn" onclick="enterStore('UK')">United Kingdom</button>
+        <button type="button" class="region-btn" onclick="enterStore('ES')">Spain</button>
+        <button type="button" class="region-btn" onclick="enterStore('IT')">Italy</button>
+        <button type="button" class="region-btn" onclick="enterStore('FR')">France</button>
       </div>
 
       <p class="splash-note" data-i18n="splash_note">
@@ -1137,11 +1155,11 @@
   </div>
 
   <!-- SIDEBAR MENU -->
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true" onclick="toggleSidebar()"></div>
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h2 class="sidebar-title" data-i18n="filter_brand">Olfactive Houses</h2>
-      <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+      <button type="button" class="close-btn" onclick="toggleSidebar()" aria-label="Close menu">&times;</button>
     </div>
     
     <div class="sidebar-content">
@@ -1167,13 +1185,13 @@
   <header class="header">
     <div class="header-inner">
       <div class="header-left">
-        <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Open Menu">
+        <button type="button" class="menu-toggle" onclick="toggleSidebar()" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
           <span></span>
           <span></span>
           <span></span>
         </button>
         <div class="logo">
-          <a href="#" onclick="resetStore(event)">MyStore Elite</a>
+          <a href="#top" onclick="resetStore(event)">El Perfumist</a>
         </div>
       </div>
       
@@ -1332,14 +1350,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="footer-inner">
       <div class="logo">
-        <a href="#" onclick="resetStore(event)">MyStore Elite</a>
+        <a href="#top" onclick="resetStore(event)">El Perfumist</a>
       </div>
       
       <div class="footer-nav">
-        <a href="#" onclick="resetStore(event)">The Vault</a>
+        <a href="#top" onclick="resetStore(event)">The Vault</a>
         <a href="#">Bespoke Policy</a>
         <a href="#">Fragrance Care</a>
         <a href="#">Global Boutiques</a>
@@ -1347,10 +1365,10 @@
 
       <!-- Social Icons -->
       <div class="social-icons">
-        <a href="#" target="_blank" aria-label="TikTok">
+        <a href="#footer" aria-label="TikTok (link coming soon)">
           <svg viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
         </a>
-        <a href="#" target="_blank" aria-label="Instagram">
+        <a href="#footer" aria-label="Instagram (link coming soon)">
           <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
         </a>
         <a href="https://pin.it/2cZXfuQWb" target="_blank" aria-label="Pinterest">
@@ -1367,7 +1385,7 @@
           <a href="https://www.instagram.com/alcast1906?igsh=MTU5eXg5M2F3dW45cA%3D%3D&utm_source=qr" target="_blank" aria-label="Designer Instagram">alcast1906</a>
         </div>
         <p style="font-size:0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 1rem; color: #555;">
-          © 2024 MYSTORE ELITE. ALL RIGHTS RESERVED.
+          © 2024 EL PERFUMIST. ALL RIGHTS RESERVED.
         </p>
       </div>
     </div>
@@ -1454,7 +1472,7 @@
 
     const translations = {
       EN: {
-        splash_title: "Welcome to MyStore Elite",
+        splash_title: "Welcome to El Perfumist",
         splash_subtitle: "Please select your shipping destination",
         splash_note: "<strong>Important:</strong> Store availability depends on your region. <br>Shoppers from Canada can use US links, but prices are displayed in USD.",
         hero_title: "Fragrance as a Second Skin.",
@@ -1509,7 +1527,7 @@
         guide_2_d2: "Warm, intense, woody, or sweet (oriental) fragrances that project better in cold air."
       },
       ES: {
-        splash_title: "Bienvenido a MyStore Elite",
+        splash_title: "Bienvenido a El Perfumist",
         splash_subtitle: "Por favor, seleccione su destino de envío",
         splash_note: "<strong>Importante:</strong> La disponibilidad depende de su región. <br>Los compradores de Canadá pueden usar los enlaces de Estados Unidos, pero los precios están en USD.",
         hero_title: "La Fragancia como Segunda Piel.",
@@ -1562,7 +1580,7 @@
         guide_2_d2: "Fragancias cálidas, intensas, amaderadas o dulces (orientales) que proyectan mejor en el aire frío."
       },
       FR: {
-        splash_title: "Bienvenue sur MyStore Elite",
+        splash_title: "Bienvenue sur El Perfumist",
         splash_subtitle: "Veuillez sélectionner votre destination de livraison",
         splash_note: "<strong>Important :</strong> La disponibilité dépend de votre région. <br>Les acheteurs canadiens peuvent utiliser les liens américains, mais les prix sont en USD.",
         hero_title: "Le Parfum comme Seconde Peau.",
@@ -1615,7 +1633,7 @@
         guide_2_d2: "Parfums chauds, intenses, boisés ou doux qui se projettent mieux dans l'air froid."
       },
       IT: {
-        splash_title: "Benvenuto su MyStore Elite",
+        splash_title: "Benvenuto su El Perfumist",
         splash_subtitle: "Seleziona la tua destinazione di spedizione",
         splash_note: "<strong>Importante:</strong> La disponibilità dipende dalla tua regione. <br>Gli acquirenti canadesi possono utilizzare i link USA, ma i prezzi sono in USD.",
         hero_title: "Il Profumo come Seconda Pelle.",
@@ -1683,10 +1701,14 @@
       if (sidebar.classList.contains('active')) {
         sidebar.classList.remove('active');
         sidebarOverlay.classList.remove('active');
+        sidebarOverlay.setAttribute('aria-hidden', 'true');
+        document.querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = 'auto';
       } else {
         sidebar.classList.add('active');
         sidebarOverlay.classList.add('active');
+        sidebarOverlay.setAttribute('aria-hidden', 'false');
+        document.querySelector('.menu-toggle')?.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
       }
     }
@@ -2429,34 +2451,46 @@
       return internalCat;
     }
 
+    const WHATSAPP_NUMBER = ""; // Set only after the owner supplies the verified business number.
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char]));
+    }
+
+    function whatsappUrl(product) {
+      const message = `Hello El Perfumist, I would like to enquire about ${product.title} (${product.price}).`;
+      const recipient = WHATSAPP_NUMBER.replace(/\D/g, "");
+      const base = recipient ? `https://wa.me/${recipient}` : "https://wa.me/";
+      return `${base}?text=${encodeURIComponent(message)}`;
+    }
+
     function createProductCard(p, i, isBestSeller = false) {
-      let badgeHtml = '';
-      if (isBestSeller) {
-        badgeHtml = `<span class="badge gold">#${i + 1} ${t('best_seller_badge')}</span>`;
-      }
-
+      const badgeHtml = isBestSeller ? `<span class="badge gold">#${i + 1} ${t('best_seller_badge')}</span>` : '';
       const reviewText = typeof p.reviews === 'number' ? p.reviews.toLocaleString() : p.reviews;
-      const reviewsHtml = (p.reviews && p.reviews !== "-") ? `<span class="rating-count">(${reviewText})</span>` : '';
-
+      const reviewsHtml = (p.reviews && p.reviews !== "-") ? `<span class="rating-count">(${escapeHtml(reviewText)})</span>` : '';
+      const title = escapeHtml(p.title);
+      const brand = escapeHtml(p.brand);
+      const price = escapeHtml(p.price);
+      const image = escapeHtml(p.image);
+      const amazonLink = escapeHtml(p.link);
       return `
-        <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="product-card" style="animation-delay:${i * 0.05}s">
+        <article class="product-card" style="animation-delay:${i * 0.05}s">
           <div class="product-image-wrap">
             ${badgeHtml}
-            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <img src="${image}" alt="${title} fragrance bottle" loading="lazy" width="1000" height="1250" onerror="this.onerror=null;this.alt='${title} image unavailable';this.style.opacity='0.25'">
           </div>
           <div class="product-info">
-            <div class="product-category">${p.brand}</div>
-            <div class="product-title">${p.title}</div>
-            <div class="product-price">${p.price}</div>
-            <div class="product-rating">
-              <span class="stars">${renderStars(p.rating)}</span>
-              ${reviewsHtml}
+            <div class="product-category">${brand}</div>
+            <div class="product-title">${title}</div>
+            <div class="product-price">${price}</div>
+            <div class="availability">Available via Amazon</div>
+            <div class="product-rating"><span class="stars" aria-label="Rated ${p.rating || 0} out of 5">${renderStars(p.rating)}</span>${reviewsHtml}</div>
+            <div class="product-actions">
+              <a href="${amazonLink}" target="_blank" rel="noopener noreferrer" class="amazon-btn">${t('shop_now')}</a>
+              <a href="${whatsappUrl(p)}" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Ask about ${title} on WhatsApp">WhatsApp Order</a>
             </div>
-            <span class="amazon-btn">
-              ${t('shop_now')}
-            </span>
           </div>
-        </a>
+        </article>
       `;
     }
 
@@ -2637,6 +2671,20 @@
         window.scrollTo({ top: document.getElementById('controlsContainer').offsetTop, behavior: 'smooth' });
       }
     }
+
+    function initializeStore() {
+      renderCategories();
+      renderBrands();
+      renderBestSellers();
+      renderGuideCarousels();
+      renderProducts();
+      enterStore('US');
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sidebar.classList.contains('active')) toggleSidebar();
+    });
+    window.addEventListener('DOMContentLoaded', initializeStore);
   </script>
 
 </body>
